@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Test Page</title>
+
+    <meta charset="utf-8">
+    <script async src="https://apps-qa.bazaarvoice.com/deployments/bv-loader-qa/kiranp3/production/en_US/bv.js"></script>
+
+  </head>
+  <style>
+    .tabItem {
+      display: inline;
+      padding-right: 10px;
+    }
+  </style>
+  <body>
+    <header role="banner" style="text-align: center;">
+       TEST PAGE
+    </header>
+
+    <main role="main">
+      <h2>SWAT RATING SUMMARY</h2>
+      <button id="showRnR" class="tabItem">Show Reviews</button>
+      <button id="showQnA" class="tabItem">Show Questions and Answers</button><br />
+      <div data-bv-show="rating_summary" data-bv-product-id="product1"></div>
+      <!-- <div data-bv-show="reviews" data-bv-product-id="product1"></div>
+      <div data-bv-show="questions" data-bv-product-id="product1"></div> -->
+
+    </main>
+    
+    <footer role="contentinfo">
+      <p></p>
+    </footer>
+
+    <script type="text/javascript">
+      let showReviewContainer = false;
+      let showQuestionContainer = false;
+      let showRnRBtn = document.querySelector("#showRnR");
+      let showQnABtn = document.querySelector("#showQnA");
+      showRnRBtn.addEventListener("click", () => {
+        if(!showReviewContainer) {
+
+          const div = document.createElement('div');
+  
+          div.setAttribute('data-bv-show', 'reviews');
+          div.setAttribute('data-bv-product-id', "product1");
+          document.body.appendChild(div);
+          showReviewContainer = true;
+        }
+      })
+      showQnABtn.addEventListener("click", () => {
+        if(!showQuestionContainer) {
+
+          const div = document.createElement('div');
+  
+          div.setAttribute('data-bv-show', 'questions');
+          div.setAttribute('data-bv-product-id', "product1");
+          document.body.appendChild(div);
+          showQuestionContainer = true;
+        }
+      })
+
+    </script>
+  </body>
+</html>
