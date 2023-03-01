@@ -5,6 +5,63 @@
 
     <meta charset="utf-8">
     <script async src="https://apps-qa.bazaarvoice.com/deployments/bv-loader-qa/kiranp2/production/en_US/bv.js"></script>
+    <script async  type="text/javascript">
+      (function () {
+  function bvCallBacksConfig() {
+    window.BV.configure('global', {
+      events: {
+        bvRender: function (data) {
+          console.log('bvRender triggered', data)
+        },
+        submissionLoad: function (data) {
+          console.log('submissionLoad triggered', data)
+        },
+        submissionClose: function (data) {
+          console.log('submissionClose triggered', data)
+        },
+        submissionSubmitted: function (data) {
+          console.log('submissionSubmitted triggered', data)
+        }
+      }
+    })
+    window.$BV.configure('global', {
+      events: {
+        bvRender: function (data) {
+          console.log('bvRender triggered in v1', data)
+        },
+        submissionLoad: function (data) {
+          console.log('submissionLoad triggered in v1', data)
+        },
+        submissionClose: function (data) {
+          console.log('submissionClose triggered in v1', data)
+        },
+        submissionSubmitted: function (data) {
+          console.log('submissionSubmitted triggered in v1', data)
+        }
+      }
+    })
+  }
+  
+  // Call the setUpCallback function only when `BV` property is defined.
+  function init() {
+    if (window.BV || window.$BV) {
+      bvCallBacksConfig()
+    } else {
+      Object.defineProperty(window, 'BV', {
+        get: () => this._BV,
+        set: (val) => {
+          this._BV = val
+          setTimeout(() => {
+            bvCallBacksConfig()
+          })
+        }
+      })
+    }
+  }
+  init()
+})()
+
+    </script>
   </head>
   <body>
     <header role="banner" style="text-align: center;">
@@ -21,6 +78,6 @@
     <footer role="contentinfo">
       <p></p>
     </footer>
-    <script src="https://apps-qa.bazaarvoice.com/test/scripts/customHandlers.js" type="text/javascript"></script>
+    
   </body>
 </html>
