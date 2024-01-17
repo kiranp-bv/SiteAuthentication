@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'strict-dynamic' 'nonce-secretkey' 'unsafe-inline' *.bazaarvoice.com uk.cdn-net.com six.cdn-net.com mpsnare.iesnare.com; object-src 'none'; base-uri 'self'">
+    <title>Login page</title>
+  </head>
+  <body>
+    <h1>Simple Login Page</h1>
+    <form name="login" id="submitForm">
+      
+      Username <input type="text" name="userid" placeholder="Optional"/>
+      Password <input type="password" name="password" placeholder="Optional"/>
+      <div style="margin-top: 10px;">
+        UserToken <textarea rows="10" cols="100" type="text" name="usertoken"></textarea>
+      </div>
+      <div>
+      <button id="loginBtn">Login</button>
+      <input type="reset" value="Cancel"/>
+    </div>
+    </form>
+
+    <script nonce="secretkey" language="javascript">
+      document.getElementById("loginBtn").addEventListener("click", check);
+
+      function check (event) {
+        var url = window.location.href;
+        var bveventidIndex = url.indexOf('bveventid') + 10;
+        var bveventid = url.slice(bveventidIndex, bveventidIndex + 11);
+        var form = document.getElementById("submitForm");
+
+        event.preventDefault();
+        var usertoken = form.usertoken.value;
+        // if(form.userid.value == "something" && form.password.value == "something")
+        // {
+          if(usertoken){
+            window.location.href = `https://kiranp-bv.github.io/SiteAuthentication/agileville/hosted_auth_product_page_enabled_container_link_enabled/v1/container.html?bveventid=${bveventid}&bvuserToken=${usertoken}`
+
+          } else {
+            // window.location.href = "https://kiranp-bv.github.io/SiteAuthentication/container.html?bveventid=" + bveventid +"&bvuserToken=1a2e7906d13cdc15914e4f95ab3242a3646174653d3230323030313039267573657269643d766465726b266d61786167653d3930s"
+            alert("Please enter user token");
+          }
+        // }
+        // else
+        // {
+        //   alert("Error");
+        // }
+      }
+    </script>
+  </body>
+</html>
