@@ -1,0 +1,140 @@
+<html>
+<style>
+    .btn,
+    input[type="file"] {
+        width: 200px;
+        height: 90px;
+    }
+
+    .secondary {
+        width: 50px;
+        height: 20px;
+    }
+
+    .container {
+        display: flex;
+        width: 100%;
+        height: auto;
+        border: 3px solid black;
+    }
+
+    .child {
+        width: 50%;
+    }
+
+    #live {
+        width: 100%;
+        height: 70%;
+    }
+
+    #output {
+        width: 400px;
+        height: 300px;
+    }
+</style>
+
+<body>
+    <input type="file" id="selfie" name="selfie" accept="video/*" capture="camera" /><br />
+
+
+
+
+    <br />
+    <div class="container">
+        <div class="child">
+            <button class="btn" id="createbtn">
+                Create video
+            </button>
+        </div>
+        <div class="child">
+            <video id="live" autoplay>
+            </video>
+            <button class="secondary" id="stopbtn">Stop</button>
+        </div>
+    </div>
+
+
+
+    <video id="output" controls>
+    </video>
+
+    <script>
+        let mediaRecorder;
+        const chunks = []
+        const videoEle = document.querySelector("#live")
+        const output = document.querySelector("#output")
+
+        function stopCamera(stream) {
+            if (stream) {
+                stream.getTracks().forEach((track) => {
+                    console.log("stop for each track : ", track.stop)
+                    track.stop();
+                })
+                /* console.log("After stop : ", runningStream.getTracks()) */
+            }
+
+        }
+
+        function create(e) {
+
+            navigator.mediaDevices
+                .getUserMedia({
+                    video: true,
+                    audio: true
+                })
+                .then((stream) => {
+                    window.stream = stream;
+                    mediaRecorder = new MediaRecorder(stream);
+                    console.log("Stream : ", stream)
+                    console.log("Starting the recording ...")
+                    console.log("MimeType : ", mediaRecorder.mimeType)
+                    videoEle.src = null;
+                    videoEle.controls = false;
+                    videoEle.loop = false;
+                    videoEle.srcObject = stream;
+                    mediaRecorder.start();
+                    console.log("State: ", mediaRecorder.state)
+
+                    mediaRecorder.ondataavailable = (e) => {
+                        chunks.push(e.data);
+                    };
+                })
+                .catch((err) => {
+                    alert("Permission denied")
+                    console.log("Error : ", err)
+                });
+
+
+        }
+
+        function stop(e) {
+            console.log("Stopping ....")
+            mediaRecorder.stop()
+            stopCamera(window.stream);
+            console.log("State: ", mediaRecorder.state)
+            videoEle.srcObject = null;
+            const blob = new Blob(chunks)
+
+            const url = URL.createObjectURL(blob)
+            console.log("O/P URL: ", url)
+            videoEle.src = url;
+            videoEle.controls = true;
+            videoEle.loop = true;
+            videoEle.load();
+            /* videoEle.play().then(() => {
+            
+            }).catch(e => {
+              console.log("Error on play() : ", e)
+            }); */
+
+        }
+
+
+        document.querySelector("#createbtn").addEventListener('click', create)
+        document.querySelector("#stopbtn").addEventListener('click', stop)
+
+    </script>
+
+</body>
+
+</html>
