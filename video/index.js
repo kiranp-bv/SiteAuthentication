@@ -1,7 +1,11 @@
 let mediaRecorder;
 let chunks = []
 const videoEle = document.querySelector("#live")
+const videoSrcEle = document.querySelector("#videoSource")
 const output = document.querySelector("#output")
+const options = {
+    // mimeType: "video/webm"
+}
 
 function stopCamera(stream) {
     if (stream) {
@@ -17,9 +21,7 @@ function stopCamera(stream) {
 function initialize(stream) {
     chunks = []
     window.stream = stream;
-    mediaRecorder = new MediaRecorder(window.stream, {
-        mimeType: "video/webm"
-    });
+    mediaRecorder = new MediaRecorder(window.stream, options);
 
     mediaRecorder.ondataavailable = (e) => {
         chunks.push(e.data);
@@ -32,11 +34,9 @@ function initialize(stream) {
     mediaRecorder.onstop = () => {
         stopCamera(window.stream);
         console.log("Final chunks : ", chunks)
-        const blob = new Blob(chunks, {
-            mimeType: "video/webm"
-        })
+        const blob = new Blob(chunks, options)
         const url = URL.createObjectURL(blob)
-        videoEle.src = url;
+        videoSrcEle.src = url;
         videoEle.srcObject = null;
         videoEle.controls = true;
         videoEle.loop = true;
@@ -48,7 +48,7 @@ function initialize(stream) {
         });
     };
 
-    videoEle.src = null;
+    videoSrcEle.src = null;
     videoEle.controls = false;
     videoEle.loop = false;
     videoEle.srcObject = window.stream;
