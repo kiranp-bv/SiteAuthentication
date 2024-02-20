@@ -18,7 +18,7 @@ let mediaRecorder;
             chunks = []
             window.stream = stream;
             mediaRecorder = new MediaRecorder(window.stream, {
-                mimeType: "video/webm"
+                // mimeType: "video/webm"
             });
 
             mediaRecorder.ondataavailable = (e) => {
@@ -33,7 +33,7 @@ let mediaRecorder;
                 stopCamera(window.stream);
                 console.log("Final chunks : ", chunks)
                 const blob = new Blob(chunks, {
-                    mimeType: "video/webm"
+                    // mimeType: "video/webm"
                 })
                 const url = URL.createObjectURL(blob)
                 videoEle.src = url;
