@@ -97,6 +97,7 @@ async function checkFileInput(e) {
     const camera = await check("camera")
     console.log("permission storage: ", storage);
     console.log("permission camera: ", camera);
+    alert(`storage : ${storage} and camera : ${camera}`)
 
 }
 
