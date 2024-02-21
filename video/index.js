@@ -9,7 +9,7 @@ const options = {
     // mimeType: "video/webm"
 }
 
-alert("Init")
+// alert("Init")
 
 function stopCamera(stream) {
     if (stream) {
