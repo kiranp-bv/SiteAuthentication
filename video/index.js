@@ -5,6 +5,7 @@ const videoSrcEle = document.querySelector("#videoSource")
 const output = document.querySelector("#output")
 const inputFileEle = document.querySelector("#inputfile")
 const resultDiv = document.querySelector("#permissionresult")
+const errorResultDiv = document.querySelector("#permissionresult")
 const options = {
     // mimeType: "video/webm"
 }
@@ -107,10 +108,15 @@ async function checkFileInput(e) {
 
 
 async function check(type) {
-    const result = await navigator.permissions.query({ name: type })
+    try {
+
+        const result = await navigator.permissions.query({ name: type })
+        return result.state
+    } catch(e) {
+        errorResultDiv.innerHTML = `Permission query Error: ${e}`
+    }
     // resultDiv.innerHTML = `Result of ${type} : ${result.state}`
     // alert(`Result of ${type} : ${result.state}`)
-    return result.state
 }
 
 
