@@ -108,7 +108,7 @@ async function checkFileInput(e) {
 
 async function check(type) {
     const result = await navigator.permissions.query({ name: type })
-    resultDiv.innerHTML = `Result of ${type} : ${result.state}`
+    // resultDiv.innerHTML = `Result of ${type} : ${result.state}`
     // alert(`Result of ${type} : ${result.state}`)
     return result.state
 }
