@@ -3,6 +3,7 @@ let chunks = []
 const videoEle = document.querySelector("#live")
 const videoSrcEle = document.querySelector("#videoSource")
 const output = document.querySelector("#output")
+const inputFileEle = document.querySelector("#inputfile")
 const options = {
     // mimeType: "video/webm"
 }
@@ -84,6 +85,34 @@ function stop(e) {
 
 }
 
+function handleFileInput(e) {
+    if (inputFileEle.disabled) {
+        alert(`inputFileEle.disabled : ${inputFileEle.disabled}`)
+    }
+    console.log("inputFileEle disabled???: ", inputFileEle.disabled);
+}
+
+async function checkFileInput(e) {
+    const storage = await check("storage-access")
+    const camera = await check("camera")
+    console.log("permission storage: ", storage);
+    console.log("permission camera: ", camera);
+
+}
+
+
+async function check(type) {
+    const result = await navigator.permissions.query({ name: type })
+    if (result.state === "granted") {
+        return true
+    } else if (result.state === "denied") {
+
+        return false
+    }
+}
+
 
 document.querySelector("#createbtn").addEventListener('click', create)
 document.querySelector("#stopbtn").addEventListener('click', stop)
+inputFileEle.addEventListener('change', handleFileInput)
+inputFileEle.addEventListener('click', checkFileInput)
