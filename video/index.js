@@ -8,6 +8,8 @@ const options = {
     // mimeType: "video/webm"
 }
 
+alert("Init")
+
 function stopCamera(stream) {
     if (stream) {
         stream.getTracks().forEach((track) => {
