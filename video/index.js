@@ -97,13 +97,15 @@ async function checkFileInput(e) {
     const camera = await check("camera")
     console.log("permission storage: ", storage);
     console.log("permission camera: ", camera);
-    alert(`storage : ${storage} and camera : ${camera}`)
+    // alert(`storage : ${storage} and camera : ${camera}`)
 
 }
 
 
 async function check(type) {
+    alert(`Check started for ${type}`)
     const result = await navigator.permissions.query({ name: type })
+    alert(`Result of ${type} : ${result.state}`)
     if (result.state === "granted") {
         return true
     } else if (result.state === "denied") {
