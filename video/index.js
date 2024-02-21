@@ -4,6 +4,7 @@ const videoEle = document.querySelector("#live")
 const videoSrcEle = document.querySelector("#videoSource")
 const output = document.querySelector("#output")
 const inputFileEle = document.querySelector("#inputfile")
+const resultDiv = document.querySelector("#permissionresult")
 const options = {
     // mimeType: "video/webm"
 }
@@ -100,13 +101,14 @@ async function checkFileInput(e) {
     console.log("permission storage: ", storage);
     console.log("permission camera: ", camera);
     // alert(`storage : ${storage} and camera : ${camera}`)
+    resultDiv.innerHTML = `storage : ${storage} and camera : ${camera}`
 
 }
 
 
 async function check(type) {
-    alert(`Check started for ${type}`)
     const result = await navigator.permissions.query({ name: type })
+    resultDiv.innerHTML = `Result of ${type} : ${result.state}`
     alert(`Result of ${type} : ${result.state}`)
     if (result.state === "granted") {
         return true
