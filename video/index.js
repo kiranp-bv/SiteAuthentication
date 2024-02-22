@@ -82,7 +82,7 @@ function create2(e) {
 
         })
         .catch((err) => {
-            alert("Permission denied")
+            logPermissions(['camera', 'microphone'])
             console.log("Error : ", err)
         });
 
@@ -93,7 +93,6 @@ function stop(e) {
     console.log("Stopping ....")
     mediaRecorder.stop()
     console.log("State: ", mediaRecorder.state)
-
 }
 
 function handleFileInput(e) {
@@ -116,23 +115,25 @@ function handleFileInput(e) {
     }
 }
 
-async function checkFileInput(e) {
-    const storage = await check("storage-access")
-    const camera = await check("camera")
-    console.log("permission storage: ", storage);
-    console.log("permission camera: ", camera);
+async function logPermissions(list = []) {
+    const state1 = await check(list[0])
+    const state2 = await check(list[1])
+    console.log({ [list[0]]: state1, [list[1]]: state2 });
     // alert(`storage : ${storage} and camera : ${camera}`)
-    resultDiv.innerHTML = `storage : ${storage} and camera : ${camera}`
+    resultDiv.innerHTML = `${list[0]} : ${state1} and ${list[1]} : ${state2}`
+}
+
+async function checkFileInput(e) {
+    logPermissions(['camera', 'storage-access'])
 
 }
 
 
-async function check(type) {
+async function check(type = '') {
     try {
-
         const result = await navigator.permissions.query({ name: type })
         return result.state
-    } catch(e) {
+    } catch (e) {
         errorResultDiv.innerHTML = `Permission query Error: ${e}`
     }
     // resultDiv.innerHTML = `Result of ${type} : ${result.state}`
