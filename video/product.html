@@ -8,21 +8,24 @@
 </head>
 
 <body>
-    <div id="permissionresult"></div>
-    <div id="errorpermissionresult"></div>
-    <input type="file" id="inputfile" name="selfie" accept="video/*" capture="camera" /><br />
+    <div class="logs">
 
-
-
-    <br />
+        <div id="permissionresult"></div>
+        <div id="errorpermissionresult"></div>
+        <input type="file" id="inputfile" name="selfie" accept="video/*" capture="camera" /><br />
+        <button class="btn" id="createbtn1">Create video (Approach 1)</button>
+    
+    
+        <br />
+    </div>
     <div class="container">
-        <div class="child">
-            <button class="btn" id="createbtn">
-                Create video
+        <div class="child one">
+            <button class="btn" id="createbtn2">
+                Create video (Approach 2)
             </button>
             <button class="secondary btn" id="stopbtn">Stop</button>
         </div>
-        <div class="child">
+        <div class="child two">
                 <video id="live" autoplay playsinline>
                     <source id="videoSource" type="video/mp4">
                 </video>

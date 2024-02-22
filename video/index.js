@@ -6,6 +6,9 @@ const output = document.querySelector("#output")
 const inputFileEle = document.querySelector("#inputfile")
 const resultDiv = document.querySelector("#permissionresult")
 const errorResultDiv = document.querySelector("#permissionresult")
+const createBtn1 = document.querySelector("#createbtn1")
+const createBtn2 = document.querySelector("#createbtn2")
+const stopBtn = document.querySelector("#stopbtn")
 const options = {
     // mimeType: "video/webm"
 }
@@ -60,6 +63,10 @@ function initialize(stream) {
 }
 
 function create(e) {
+    inputFileEle.click()
+}
+
+function create2(e) {
     console.log("Create clicked!")
     navigator.mediaDevices
         .getUserMedia({
@@ -133,7 +140,8 @@ async function check(type) {
 }
 
 
-document.querySelector("#createbtn").addEventListener('click', create)
-document.querySelector("#stopbtn").addEventListener('click', stop)
+createBtn1.addEventListener('click', create)
+createBtn2.addEventListener('click', create2)
+stopBtn.addEventListener('click', stop)
 inputFileEle.addEventListener('change', handleFileInput)
 inputFileEle.addEventListener('click', checkFileInput)
