@@ -90,10 +90,22 @@ function stop(e) {
 }
 
 function handleFileInput(e) {
-    if (inputFileEle.disabled) {
-        alert(`inputFileEle.disabled : ${inputFileEle.disabled}`)
+    const uploadedFile = e?.target?.files[0];
+    if (e?.target?.files[0]) {
+        const url = URL.createObjectURL(uploadedFile)
+        videoEle.srcObject = null;
+        videoEle.controls = true;
+        videoEle.loop = true;
+        videoSrcEle.src = url;
+        videoEle.load()
+        videoEle.play().then(() => {
+
+        }).catch(e => {
+            alert("Error on file input play")
+        });
+    } else {
+        alert("Uploaded file not found!")
     }
-    console.log("inputFileEle disabled???: ", inputFileEle.disabled);
 }
 
 async function checkFileInput(e) {
