@@ -102,6 +102,7 @@ function handleFileInput(e) {
 
         }).catch(e => {
             alert("Error on file input play")
+            console.log("Error on file input play : ", e)
         });
     } else {
         alert("Uploaded file not found!")
