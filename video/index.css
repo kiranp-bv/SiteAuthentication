@@ -12,9 +12,10 @@ body {
 }
 .btn {
     width: 400px;
-    height: 50%;
+    height: 60px;
     margin-right: 20px;
     background-color: rgb(49, 117, 218);
+    margin-bottom: 10px;
 }
 
 .btn:hover,
@@ -26,6 +27,7 @@ input[type="file"]:hover {
     width: 100%;
     height: 80%;
     border: 3px solid black;
+    margin-top: 10px;
 }
 
 .container > .one {
