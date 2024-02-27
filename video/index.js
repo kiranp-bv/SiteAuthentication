@@ -104,12 +104,12 @@ function handleFileInput(e) {
         videoEle.loop = true;
         videoSrcEle.src = url;
         videoEle.load()
-        videoEle.play().then(() => {
+        // videoEle.play().then(() => {
 
-        }).catch(e => {
-            alert("Error on file input play")
-            console.log("Error on file input play : ", e)
-        });
+        // }).catch(e => {
+        //     alert("Error on file input play")
+        //     console.log("Error on file input play : ", e)
+        // });
     } else {
         alert("Uploaded file not found!")
     }
