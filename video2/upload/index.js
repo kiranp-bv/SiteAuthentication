@@ -68,7 +68,7 @@ function handleVideoError(e){
 }
 
 
-createBtn1.addEventListener('click', create)
+// createBtn1.addEventListener('click', create)
 inputFileEle.addEventListener('change', handleFileInput)
 inputFileEle.addEventListener('click', checkFileInput)
-videoEle.addEventListener('error', handleVideoError)
+// videoEle.addEventListener('error', handleVideoError)
