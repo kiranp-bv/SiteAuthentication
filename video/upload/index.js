@@ -21,6 +21,7 @@ function handleFileInput(e) {
     console.log("Handling file input");
     const uploadedFile = e?.target?.files[0];
     if (uploadedFile) {
+        videocontainer.style.display = "block"
         console.log("Type of uploaded file : ", typeof e?.target?.files[0] );
         const url = URL.createObjectURL(uploadedFile)
         videoEle.srcObject = null;
@@ -28,7 +29,6 @@ function handleFileInput(e) {
         videoEle.loop = true;
         videoSrcEle.src = url;
         videoEle.load()
-        // videocontainer.style.display = "block"
         // videoEle.play().then(() => {
 
         // }).catch(e => {
@@ -56,12 +56,6 @@ function prepareToUpload(file) {
 }
 
 
-async function checkFileInput(e) {
-    // videocontainer.style.display = "block"
-
-}
-
-
 function handleVideoError(e){
     console.log("Video error : ", e
     );
@@ -70,5 +64,4 @@ function handleVideoError(e){
 
 createBtn1.addEventListener('click', create)
 inputFileEle.addEventListener('change', handleFileInput)
-inputFileEle.addEventListener('click', checkFileInput)
 videoEle.addEventListener('error', handleVideoError)
