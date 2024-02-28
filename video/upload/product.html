@@ -12,23 +12,25 @@
 
         <div id="permissionresult"></div>
         <div id="errorpermissionresult"></div>
-        <input type="file" id="inputfile" name="selfie" accept="video/*" capture="camera" /><br />
-        <button class="btn" id="createbtn1">Create video (Approach 1)</button>
-    
-    
+        
         <br />
     </div>
     <div class="container">
-        <div class="child one">
+        <div class="placeholder1"></div>
+        <div class="placeholder2"></div>
+        <!-- <div class="child one"> -->
+            <input type="file" id="inputfile" name="selfie" accept="video/*" capture="camera" />
             <button class="btn" id="createbtn1">
                 Upload a video
             </button>
-        </div>
-        <div class="child two">
+        <!-- </div> -->
+        <div id="videocontainer" class="child two">
                 <video id="live" autoplay playsinline>
                     <source id="videoSource" type="video/mp4">
                 </video>
         </div>
+        <div class="placeholder1"></div>
+        <div class="placeholder1"></div>
     </div>
 
 

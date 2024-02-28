@@ -11,13 +11,6 @@ body {
     height: auto;
     display: none;
 }
-.btn {
-    width: 400px;
-    height: 60px;
-    margin-right: 20px;
-    background-color: rgb(49, 117, 218);
-    margin-bottom: 10px;
-}
 
 .btn:hover,
 input[type="file"]:hover {
@@ -25,19 +18,40 @@ input[type="file"]:hover {
 }
 
 .container {
-    width: 100%;
-    height: 80%;
-    border: 3px solid black;
+    margin: 0 auto; 
+
+        background-color: rgb(255, 255, 255);
+        border: 1px solid rgb(204, 204, 204);
+        box-shadow: none;
+        height: 100%;
+        min-height: 100%;
+        max-width: 780px;
+        overflow: auto;
+        position: relative;
+        width: 100%;
+        padding: 20px;
+
+
+    
+}
+
+.placeholder1 {
+    min-width: 90%;
+    min-height: 10%;
+    background-color: rgb(237, 237, 238);
+    margin-bottom: 10px;
     margin-top: 10px;
+
 }
 
-.container > .one {
-    height: 10%;
+.placeholder2 {
+    min-width: 90%;
+    min-height: 25%;
+    background-color: rgb(237, 237, 238);
+    margin-bottom: 10px;
+
 }
 
-.container > .two {
-    height: 90%;
-}
 
 
 #inputfile {
@@ -45,42 +59,48 @@ input[type="file"]:hover {
 }
 
 #createbtn1 {
-    height: 100px;
+    /* .iiaMwW { */
+        -webkit-box-align: center;
+        align-items: center;
+        border-color: rgb(30, 128, 202);
+        color: rgb(0, 0, 0);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 13px;
+        line-height: 19.5px;
+        font-style: normal;
+        font-weight: bold;
+        text-transform: none;
+        cursor: pointer;
+        display: flex;
+        height: 48px;
+        -webkit-box-pack: center;
+        justify-content: center;
+        opacity: 1;
+        padding: 0px;
+        text-align: center;
+        width: 210px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+}
+
+.two {
+    width: 470px;
+    height: 250px;
+    display: none;
+    /* border: 5px solid rgb(63, 63, 63); */
 }
 #live {
     width: 100%;
     height: 100%;
 }
 
-#output {
-    width: 400px;
-    height: 300px;
-}
 
 
 
-@media screen and (min-width: 800px) {
+
+@media screen and (max-width: 500px) {
+
     .container {
-        display: flex;
-    }
-
-    .child {
-        width: 50%;
-        padding: 10px;
-    }
-
-    .btn {
-        margin-bottom: 10px;
-    }
-}
-
-
-
-@media screen and (width: 799px) {
-
-    .child {
-        display: flex;
-        padding: 10px;
-        margin-bottom: 10px;
+        max-width: 100%;
     }
 }

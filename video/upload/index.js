@@ -9,6 +9,9 @@ const errorResultDiv = document.querySelector("#permissionresult")
 const createBtn1 = document.querySelector("#createbtn1")
 const createBtn2 = document.querySelector("#createbtn2")
 const stopBtn = document.querySelector("#stopbtn")
+const videocontainer = document.querySelector("#videocontainer")
+
+videocontainer
 const options = {
     // mimeType: "video/webm"
 }
@@ -96,6 +99,7 @@ function stop(e) {
 }
 
 function handleFileInput(e) {
+    console.log("Handling file input");
     const uploadedFile = e?.target?.files[0];
     if (uploadedFile) {
         console.log("Type of uploaded file : ", typeof e?.target?.files[0] );
@@ -105,6 +109,7 @@ function handleFileInput(e) {
         videoEle.loop = true;
         videoSrcEle.src = url;
         videoEle.load()
+        videocontainer.style.display = "block"
         // videoEle.play().then(() => {
 
         // }).catch(e => {
@@ -140,6 +145,7 @@ async function logPermissions(list = []) {
 }
 
 async function checkFileInput(e) {
+    videocontainer.style.display = "block"
     logPermissions(['camera', 'storage-access'])
 
 }
@@ -158,7 +164,7 @@ async function check(type = '') {
 
 
 createBtn1.addEventListener('click', create)
-createBtn2.addEventListener('click', create2)
-stopBtn.addEventListener('click', stop)
+// createBtn2.addEventListener('click', create2)
+// stopBtn.addEventListener('click', stop)
 inputFileEle.addEventListener('change', handleFileInput)
 inputFileEle.addEventListener('click', checkFileInput)
