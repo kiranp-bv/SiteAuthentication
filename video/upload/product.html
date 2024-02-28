@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="./index.css" />
+</head>
+
+<body>
+    <div class="logs">
+
+        <div id="permissionresult"></div>
+        <div id="errorpermissionresult"></div>
+        <input type="file" id="inputfile" name="selfie" accept="video/*" capture="camera" /><br />
+        <button class="btn" id="createbtn1">Create video (Approach 1)</button>
+    
+    
+        <br />
+    </div>
+    <div class="container">
+        <div class="child one">
+            <button class="btn" id="createbtn1">
+                Upload a video
+            </button>
+        </div>
+        <div class="child two">
+                <video id="live" autoplay playsinline>
+                    <source id="videoSource" type="video/mp4">
+                </video>
+        </div>
+    </div>
+
+
+
+    <!-- <video id="output" controls>
+    </video> -->
+
+    <script src="./index.js"></script>
+
+</body>
+
+</html>

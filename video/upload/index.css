@@ -1,0 +1,86 @@
+* {
+    font-size: 20px;
+    color: black;
+}
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.logs {
+    height: auto;
+    display: none;
+}
+.btn {
+    width: 400px;
+    height: 60px;
+    margin-right: 20px;
+    background-color: rgb(49, 117, 218);
+    margin-bottom: 10px;
+}
+
+.btn:hover,
+input[type="file"]:hover {
+    cursor: pointer;
+}
+
+.container {
+    width: 100%;
+    height: 80%;
+    border: 3px solid black;
+    margin-top: 10px;
+}
+
+.container > .one {
+    height: 10%;
+}
+
+.container > .two {
+    height: 90%;
+}
+
+
+#inputfile {
+    display: none;
+}
+
+#createbtn1 {
+    height: 100px;
+}
+#live {
+    width: 100%;
+    height: 100%;
+}
+
+#output {
+    width: 400px;
+    height: 300px;
+}
+
+
+
+@media screen and (min-width: 800px) {
+    .container {
+        display: flex;
+    }
+
+    .child {
+        width: 50%;
+        padding: 10px;
+    }
+
+    .btn {
+        margin-bottom: 10px;
+    }
+}
+
+
+
+@media screen and (width: 799px) {
+
+    .child {
+        display: flex;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+}
