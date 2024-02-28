@@ -162,9 +162,15 @@ async function check(type = '') {
     // alert(`Result of ${type} : ${result.state}`)
 }
 
+function handleVideoError(e){
+    console.log("Video error : ", e
+    );
+}
+
 
 createBtn1.addEventListener('click', create)
 // createBtn2.addEventListener('click', create2)
 // stopBtn.addEventListener('click', stop)
 inputFileEle.addEventListener('change', handleFileInput)
 inputFileEle.addEventListener('click', checkFileInput)
+videoEle.addEventListener('error', handleVideoError)

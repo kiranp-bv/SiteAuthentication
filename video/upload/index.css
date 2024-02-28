@@ -87,7 +87,7 @@ input[type="file"]:hover {
     width: 470px;
     height: 250px;
     display: none;
-    /* border: 5px solid rgb(63, 63, 63); */
+    border: 1px solid rgb(42, 42, 42);
 }
 #live {
     width: 100%;
@@ -102,5 +102,12 @@ input[type="file"]:hover {
 
     .container {
         max-width: 100%;
+    }
+
+    .two {
+        width: 100%;
+        height: 250px;
+        display: none;
+        /* border: 5px solid rgb(63, 63, 63); */
     }
 }
