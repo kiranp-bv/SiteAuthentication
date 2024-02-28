@@ -7,13 +7,7 @@ body {
     height: 100%;
 }
 
-.logs {
-    height: auto;
-    display: none;
-}
-
-.btn:hover,
-input[type="file"]:hover {
+.btn:hover {
     cursor: pointer;
 }
 

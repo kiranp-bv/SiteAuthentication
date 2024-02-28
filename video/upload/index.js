@@ -28,7 +28,7 @@ function handleFileInput(e) {
         videoEle.loop = true;
         videoSrcEle.src = url;
         videoEle.load()
-        videocontainer.style.display = "block"
+        // videocontainer.style.display = "block"
         // videoEle.play().then(() => {
 
         // }).catch(e => {
@@ -57,22 +57,10 @@ function prepareToUpload(file) {
 
 
 async function checkFileInput(e) {
-    videocontainer.style.display = "block"
-    // logPermissions(['camera', 'storage-access'])
+    // videocontainer.style.display = "block"
 
 }
 
-
-async function check(type = '') {
-    // try {
-    //     const result = await navigator.permissions.query({ name: type })
-    //     return result.state
-    // } catch (e) {
-    //     errorResultDiv.innerHTML = `Permission query Error: ${e}`
-    // }
-    // resultDiv.innerHTML = `Result of ${type} : ${result.state}`
-    // alert(`Result of ${type} : ${result.state}`)
-}
 
 function handleVideoError(e){
     console.log("Video error : ", e

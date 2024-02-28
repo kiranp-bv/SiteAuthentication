@@ -8,37 +8,30 @@
 </head>
 
 <body>
-    Version 1 - cleaned up JS
+    Version 2 - only basic
     <input type="file" id="inputfile" name="selfie" accept="video/*" capture="camera" />
-    <div class="logs">
 
-        <div id="permissionresult"></div>
-        <div id="errorpermissionresult"></div>
-        
-        <br />
-    </div>
-    <div class="container">
+        <button class="btn" id="createbtn1">
+            Upload a video
+        </button>
+            <video id="live" autoplay playsinline>
+                <source id="videoSource" type="video/mp4">
+            </video>
+    <!-- <div class="container">
         <div class="placeholder1"></div>
         <div class="placeholder2"></div>
-        <!-- <div class="child one"> -->
-            
-            <button class="btn" id="createbtn1">
-                Upload a video
-            </button>
-        <!-- </div> -->
+
+        <button class="btn" id="createbtn1">
+            Upload a video
+        </button>
         <div id="videocontainer" class="child two">
-                <video id="live" autoplay playsinline>
-                    <source id="videoSource" type="video/mp4">
-                </video>
+            <video id="live" autoplay playsinline>
+                <source id="videoSource" type="video/mp4">
+            </video>
         </div>
         <div class="placeholder1"></div>
         <div class="placeholder1"></div>
-    </div>
-
-
-
-    <!-- <video id="output" controls>
-    </video> -->
+    </div> -->
 
     <script src="./index.js"></script>
 
