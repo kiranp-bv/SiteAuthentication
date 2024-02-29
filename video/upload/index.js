@@ -53,9 +53,7 @@ function create(e) {
 function handleFileInput(e) {
     const uploadedFile = e?.target?.files[0];
     if (uploadedFile) {
-        videoLinkEle.href = ''
-        videoLinkEle.style.color = "black"
-        videoLinkEle.style.fontWeight = "normal"
+        videoLinkEle.style.display = "none"
         selectedFileNameEle.innerHTML = uploadedFile.name || 'Unknown'
         let srcEle = getVideoSourceEle(currentType)
         srcEle.src = null
@@ -111,7 +109,7 @@ function submit() {
     var data = new FormData();
     data.append("apiversion", "5.5");
     data.append("contenttype", "review");
-    data.append("video", uploadedFile.blob, "hellohello.mov");
+    data.append("video", uploadedFile.blob);
 
     var xhr = new XMLHttpRequest();
 
@@ -120,6 +118,7 @@ function submit() {
             const res = this.responseText && JSON.parse(this.responseText)
             console.log("API Response : ", res);
             if (res) {
+                videoLinkEle.style.display = "block"
                 videoLinkEle.href = res.Video.VideoUrl
                 videoLinkEle.style.color = "green"
                 videoLinkEle.style.fontWeight = "bold"
@@ -129,6 +128,10 @@ function submit() {
     xhr.open("POST", "https://qamedia.api.bazaarvoice.com/data/uploadvideo.json?PassKey=caVCg5HE3ecxMzeEpHKHF8seU6ixGfW8dVoiAkGJjA3HQ&displayCode=13928_15_0");
 
     xhr.send(data);
+}
+
+function loadedmetadata(e) {
+    console.log("loadedmetadata duration: ", videoEle.duration);
 }
 createBtn1.addEventListener('click', create)
 inputFileEle.addEventListener('change', handleFileInput)
@@ -141,5 +144,6 @@ videoEle.addEventListener("loadstart", handleEvent);
 videoEle.addEventListener("progress", handleEvent);
 videoEle.addEventListener("canplay", handleEvent);
 videoEle.addEventListener("canplaythrough", handleEvent);
+videoEle.addEventListener("loadedmetadata", loadedmetadata);
 submitBtn.addEventListener('click', submit)
 
