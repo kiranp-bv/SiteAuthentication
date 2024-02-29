@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <input type="file" id="inputfile" name="selfie" accept="video/*" capture="camera" />
+    <input type="file" id="inputfile" name="selfie" accept="video/*" />
     <div class="container">
         <div class="placeholder1"></div>
         <div class="placeholder2"></div>
@@ -18,7 +18,11 @@
         </button>
         <div id="videocontainer" class="child two">
             <video id="live" autoplay playsinline>
-                <source id="videoSource" type="video/mp4">
+                <source id="videoSource-mp4" type="video/mp4">
+                <source id="videoSource-avi" type="video/avi">
+                <source id="videoSource-asf" type="video/x-ms-asf">
+                <source id="videoSource-mov" type="video/quicktime">
+                <source id="videoSource-mpeg" type="video/mpeg">
             </video>
         </div>
         <div class="placeholder1"></div>
