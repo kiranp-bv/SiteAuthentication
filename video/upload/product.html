@@ -9,7 +9,7 @@
 
 <body>
     
-    <input type="file" id="inputfile" name="selfie" accept="video/*" />
+    <input type="file" id="inputfile" name="selfie" accept="video/3gpp2,video/*" />
     <div class="container">
         <div class="placeholder1"></div>
         <div class="placeholder2"></div>
@@ -17,6 +17,8 @@
         <button class="btn" id="createbtn1">
             Upload a video
         </button>
+        <button id="submit">Submit to API</button>
+        <a id="videolink">Generated Video link</a>
         <div id="videocontainer" class="child two">
             <video id="live" autoplay playsinline>
                 <source id="videoSource-mp4" type="video/mp4">

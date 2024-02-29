@@ -10,7 +10,9 @@ const createBtn1 = document.querySelector("#createbtn1")
 const createBtn2 = document.querySelector("#createbtn2")
 const stopBtn = document.querySelector("#stopbtn")
 const selectedFileNameEle = document.querySelector("#selectedFileName")
-
+const submitBtn = document.querySelector("#submit")
+const videoLinkEle = document.querySelector("#videolink")
+let uploadedFile = null;
 const options = {
     // mimeType: "video/mp4"
 }
@@ -31,14 +33,14 @@ function getVideoSourceEle(type = 'video/mp4') {
             type1 = 'mov'
             break;
 
-                case 'video/mpeg':
-                    type1 = 'mpeg'
-                    break;
-                    case 'video/3gpp2':
-                    type1 = '3gpp2'
-                    break;
-                    
-            	
+        case 'video/mpeg':
+            type1 = 'mpeg'
+            break;
+        case 'video/3gpp2':
+            type1 = '3gpp2'
+            break;
+
+
     }
     currentType = type
     return document.querySelector(`#videoSource-${type1}`)
@@ -49,16 +51,18 @@ function create(e) {
 
 
 function handleFileInput(e) {
-    console.log("Handling file input");
     const uploadedFile = e?.target?.files[0];
     if (uploadedFile) {
+        videoLinkEle.href = ''
+        videoLinkEle.style.color = "black"
+        videoLinkEle.style.fontWeight = "normal"
         selectedFileNameEle.innerHTML = uploadedFile.name || 'Unknown'
         let srcEle = getVideoSourceEle(currentType)
-        // srcEle.src = null
+        srcEle.src = null
         // reset src value for prev video type
 
         videocontainer.style.display = "block"
-        console.log("Type of uploaded file : ", uploadedFile.type );
+        console.log("Type of uploaded file : ", uploadedFile.type);
         const url = URL.createObjectURL(uploadedFile)
         srcEle = getVideoSourceEle(uploadedFile.type)
         videoEle.srcObject = null;
@@ -72,7 +76,7 @@ function handleFileInput(e) {
         //     alert("Error on file input play")
         //     console.log("Error on file input play : ", e)
         // });
-        prepareToUpload(uploadedFile) 
+        prepareToUpload(uploadedFile)
     } else {
         alert("Uploaded file not found!")
     }
@@ -82,45 +86,50 @@ function prepareToUpload(file) {
     const filePromise = new Promise(resolve => {
         const reader = new FileReader()
         reader.onload = () => {
-          resolve({ localUrl: reader.result, blob: file })
+            resolve({ localUrl: reader.result, blob: file })
         }
         reader.readAsDataURL(file)
-      })
-    
-      filePromise.then(results => {
-        console.log("File reader results : ", results);
-      })
+    })
+
+    filePromise.then(result => {
+        uploadedFile = result;
+        console.log("File ready to be submitted to API : ", result.blob);
+    })
 }
 
 
-function handleVideoError(e){
+function handleVideoError(e) {
     console.log("Video error : ", e
     );
 }
 
-function waiting(e) {
-    console.log("Waiting : ", e);
-}
-
-function loadeddata(e) {
-    console.log("Loaded data : ", e);
-}
-
-function loadStart(e) {
-    console.log("loadStart : ", e);
-}
-
-function suspend(e) {
-    console.log("suspend : ", e);
-}
-
-function stalled(e) {
-    console.log("stalled : ", e);
-}
-
 function handleEvent(event) {
     console.log(`${event.type}`);
-  }
+}
+
+function submit() {
+    var data = new FormData();
+    data.append("apiversion", "5.5");
+    data.append("contenttype", "review");
+    data.append("video", uploadedFile.blob, "hellohello.mov");
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
+            const res = this.responseText && JSON.parse(this.responseText)
+            console.log("API Response : ", res);
+            if (res) {
+                videoLinkEle.href = res.Video.VideoUrl
+                videoLinkEle.style.color = "green"
+                videoLinkEle.style.fontWeight = "bold"
+            }
+        }
+    });
+    xhr.open("POST", "https://qamedia.api.bazaarvoice.com/data/uploadvideo.json?PassKey=caVCg5HE3ecxMzeEpHKHF8seU6ixGfW8dVoiAkGJjA3HQ&displayCode=13928_15_0");
+
+    xhr.send(data);
+}
 createBtn1.addEventListener('click', create)
 inputFileEle.addEventListener('change', handleFileInput)
 videoEle.addEventListener('error', handleVideoError)
@@ -132,4 +141,5 @@ videoEle.addEventListener("loadstart", handleEvent);
 videoEle.addEventListener("progress", handleEvent);
 videoEle.addEventListener("canplay", handleEvent);
 videoEle.addEventListener("canplaythrough", handleEvent);
+submitBtn.addEventListener('click', submit)
 
