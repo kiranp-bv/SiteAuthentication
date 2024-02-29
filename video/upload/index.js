@@ -9,6 +9,8 @@ const errorResultDiv = document.querySelector("#permissionresult")
 const createBtn1 = document.querySelector("#createbtn1")
 const createBtn2 = document.querySelector("#createbtn2")
 const stopBtn = document.querySelector("#stopbtn")
+const selectedFileNameEle = document.querySelector("#selectedFileName")
+
 const options = {
     // mimeType: "video/mp4"
 }
@@ -24,22 +26,18 @@ function getVideoSourceEle(type = 'video/mp4') {
         case 'video/avi':
             type1 = 'mov';
             break;
-        case 'video/x-ms-asf':
-            type1 = 'asf'
-            break;
 
         case 'video/quicktime':
             type1 = 'mov'
             break;
 
-            case 'video/x-msvideo':
-                type1 = 'mov'
-                break;
-
                 case 'video/mpeg':
                     type1 = 'mpeg'
                     break;
-            
+                    case 'video/3gpp2':
+                    type1 = '3gpp2'
+                    break;
+                    
             	
     }
     currentType = type
@@ -54,12 +52,13 @@ function handleFileInput(e) {
     console.log("Handling file input");
     const uploadedFile = e?.target?.files[0];
     if (uploadedFile) {
+        selectedFileNameEle.innerHTML = uploadedFile.name || 'Unknown'
         let srcEle = getVideoSourceEle(currentType)
         // srcEle.src = null
         // reset src value for prev video type
 
         videocontainer.style.display = "block"
-        console.log("Type of uploaded file : ", uploadedFile, uploadedFile.type );
+        console.log("Type of uploaded file : ", uploadedFile.type );
         const url = URL.createObjectURL(uploadedFile)
         srcEle = getVideoSourceEle(uploadedFile.type)
         videoEle.srcObject = null;
