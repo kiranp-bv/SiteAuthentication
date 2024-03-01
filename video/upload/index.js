@@ -47,7 +47,12 @@ function getVideoSourceEle(type = 'video/mp4') {
     return document.querySelector(`#videoSource-${type1}`)
 }
 function create(type = 'create') {
-    inputFileEle.click()
+    if (type === 'create') {
+
+        inputFileEleCreate.click()
+    } else {
+        inputFileEleUpload.click()
+    }
 }
 
 
