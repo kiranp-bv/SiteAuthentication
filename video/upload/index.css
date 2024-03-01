@@ -52,7 +52,7 @@ body {
     display: none;
 }
 
-#createbtn1 {
+.btn {
     /* .iiaMwW { */
         -webkit-box-align: center;
         align-items: center;

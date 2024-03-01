@@ -6,8 +6,8 @@ const output = document.querySelector("#output")
 const inputFileEle = document.querySelector("#inputfile")
 const resultDiv = document.querySelector("#permissionresult")
 const errorResultDiv = document.querySelector("#permissionresult")
-const createBtn1 = document.querySelector("#createbtn1")
-const createBtn2 = document.querySelector("#createbtn2")
+const createBtn = document.querySelector("#createBtn")
+const uploadBtn = document.querySelector("#uploadBtn")
 const stopBtn = document.querySelector("#stopbtn")
 const selectedFileNameEle = document.querySelector("#selectedFileName")
 const submitBtn = document.querySelector("#submit")
@@ -45,7 +45,7 @@ function getVideoSourceEle(type = 'video/mp4') {
     currentType = type
     return document.querySelector(`#videoSource-${type1}`)
 }
-function create(e) {
+function create(type = 'create') {
     inputFileEle.click()
 }
 
@@ -133,7 +133,8 @@ function submit() {
 function loadedmetadata(e) {
     console.log("loadedmetadata duration: ", videoEle.duration);
 }
-createBtn1.addEventListener('click', create)
+createBtn.addEventListener('click', create)
+uploadBtn.addEventListener('click', () => create('upload'))
 inputFileEle.addEventListener('change', handleFileInput)
 videoEle.addEventListener('error', handleVideoError)
 videoEle.addEventListener('waiting', handleEvent)
