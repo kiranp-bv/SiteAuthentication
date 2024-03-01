@@ -5,6 +5,8 @@ const videoSrcEle = document.querySelector("#videoSource-mp4")
 const output = document.querySelector("#output")
 const inputFileEleCreate = document.querySelector("#inputfilecreate")
 const inputFileEleUpload = document.querySelector("#inputfileupload")
+const inputfilee = document.querySelector("#inputfile")
+
 const resultDiv = document.querySelector("#permissionresult")
 const errorResultDiv = document.querySelector("#permissionresult")
 const createBtn = document.querySelector("#createBtn")
@@ -49,7 +51,7 @@ function getVideoSourceEle(type = 'video/mp4') {
 function create(type = 'create') {
     if (type === 'create') {
 
-        inputFileEleCreate.click()
+        inputfilee.click()
     } else {
         inputFileEleUpload.click()
     }
