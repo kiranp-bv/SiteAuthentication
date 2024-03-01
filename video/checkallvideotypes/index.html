@@ -16,7 +16,6 @@
     <source src="https://sample-videos.com/video321/3gp/240/big_buck_bunny_240p_5mb.3gp" type="video/3gpp2">
 </video>
 
-<!-- ASF -->
 <h2>ASF</h2>
 <video id="mp4" autoplay playsinline controls loop>
     <source src="http://127.0.0.1:5500/video/files/asf%20video%20original.asf" type="video/mp4">
@@ -25,7 +24,7 @@
 <h2>AVI</h2>
 <video autoplay playsinline controls loop>
     <source src="https://file-examples.com/wp-content/storage/2018/04/file_example_AVI_640_800kB.avi"
-        type="video/quicktime">
+        type="video/mp4">
 </video>
 
 <h2>FLV</h2>
@@ -33,12 +32,12 @@
     <source src="https://sample-videos.com/video321/flv/720/big_buck_bunny_720p_1mb.flv" type="video/mp4">
 </video>
 
-<h2>MOV Chrome</h2>
+<!-- <h2>MOV Chrome</h2>
 <video autoplay playsinline controls loop>
     <source src="http://127.0.0.1:5500/video/files/mov%20video.mov" type="video/mp4">
-</video>
+</video> -->
 
-<h2>MOV Safari and Firefox</h2>
+<h2>MOV</h2>
 <video autoplay playsinline controls loop>
     <source src="http://127.0.0.1:5500/video/files/mov%20video.mov" type="video/quicktime">
 </video>
@@ -54,13 +53,13 @@
 </video>
 
 
-<h2>Quick time Chrome</h2>
-<video autoplay playsinline controls loop>
+<!-- <h2>Quick time Chrome</h2>
+<video id="qtchrome" autoplay playsinline controls loop>
     <source src="http://127.0.0.1:5500/video/files/QT%20quick%20time%20video.mov" type="video/mp4">
-</video>
+</video> -->
 
 
-<h2>Quick time Safari and Firefox</h2>
+<h2>Quick time</h2>
 <video autoplay playsinline controls loop>
     <source src="http://127.0.0.1:5500/video/files/QT%20quick%20time%20video.mov" type="video/quicktime">
 </video>
@@ -112,12 +111,13 @@
             file: "WMV",
             type: null
         }]
-        let result = ''
+        let result = 'This browser supprots preview for: \n'
         let obj = document.createElement("video");
         formats.forEach(({file,type}) => {
-            result += `${file}${' '.repeat(10-file.length)}:   ${obj.canPlayType(type) || 'No'}    - ${MediaSource.isTypeSupported(type)}\n`
+            result += `${file}${' '.repeat(10-file.length)}:   ${obj.canPlayType(type) || 'No'}\n`
         })
         alert(result);
     }
     document.querySelector("#check").addEventListener('click', check)
+    document.querySelector("#qtchrome").addEventListener('click', check)
 </script>
