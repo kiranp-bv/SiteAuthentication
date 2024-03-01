@@ -143,7 +143,6 @@ videoEle.addEventListener('waiting', handleEvent)
 videoEle.addEventListener('loadeddata', handleEvent)
 videoEle.addEventListener('suspend', handleEvent)
 videoEle.addEventListener('stalled', handleEvent)
-videoEle.addEventListener("loadstart", handleEvent);
 videoEle.addEventListener("progress", handleEvent);
 videoEle.addEventListener("canplay", handleEvent);
 videoEle.addEventListener("canplaythrough", handleEvent);
