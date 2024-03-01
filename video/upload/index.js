@@ -139,10 +139,19 @@ function submit() {
 function loadedmetadata(e) {
     console.log("loadedmetadata duration: ", videoEle.duration);
 }
+
+function handleCancel() {
+    console.log("Cancelled");
+    alert("Cancelled")
+
+}
+
 createBtn.addEventListener('click', create)
 uploadBtn.addEventListener('click', () => create('upload'))
 inputFileEleCreate.addEventListener('change', handleFileInput)
+inputFileEleCreate.addEventListener('cancel', handleCancel)
 inputFileEleUpload.addEventListener('change', handleFileInput)
+inputFileEleUpload.addEventListener('cancel', handlhandleCanceleFileInput)
 videoEle.addEventListener('error', handleVideoError)
 videoEle.addEventListener('waiting', handleEvent)
 videoEle.addEventListener('loadeddata', handleEvent)
