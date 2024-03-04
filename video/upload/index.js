@@ -141,8 +141,8 @@ function loadedmetadata(e) {
     console.log("loadedmetadata duration: ", videoEle.duration);
 }
 
-function handleCancel() {
-    console.log("Cancelled");
+function handleCancel(e) {
+    console.log("Cancelled : ", e);
     alert("Cancelled")
 
 }
