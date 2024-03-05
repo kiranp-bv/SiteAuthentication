@@ -63,7 +63,7 @@ function handleFileInput(e) {
     if (uploadedFile) {
         alert(`Uploaded video type : ${uploadedFile.type}`)
         videoLinkEle.style.display = "none"
-        selectedFileNameEle.innerHTML = uploadedFile.name || 'Unknown'
+        selectedFileNameEle.innerHTML = `${uploadedFile.name} // ${uploadedFile.type}` || 'Unknown'
         let srcEle = getVideoSourceEle(currentType)
         srcEle.src = null
         // reset src value for prev video type
