@@ -59,6 +59,7 @@ function create(type = 'create') {
 
 function handleFileInput(e) {
     const uploadedFile = e?.target?.files[0];
+    console.log("uploadedFile : ", uploadedFile);
     if (uploadedFile) {
         videoLinkEle.style.display = "none"
         selectedFileNameEle.innerHTML = uploadedFile.name || 'Unknown'
