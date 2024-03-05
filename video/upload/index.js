@@ -19,7 +19,6 @@ const options = {
     // mimeType: "video/mp4"
 }
 let currentType = 'mp4'
-// alert("Init")
 
 function getVideoSourceEle(type = 'video/mp4') {
     let type1 = 'mp4'
@@ -100,7 +99,6 @@ function prepareToUpload(file) {
 
     filePromise.then(result => {
         uploadedFile = result;
-        alert()
         console.log("File ready to be submitted to API : ", result.blob);
     })
 }
