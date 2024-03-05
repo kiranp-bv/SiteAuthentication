@@ -61,6 +61,7 @@ function handleFileInput(e) {
     const uploadedFile = e?.target?.files[0];
     console.log("uploadedFile : ", uploadedFile);
     if (uploadedFile) {
+        alert(`Uploaded video type : ${uploadedFile.type}`)
         videoLinkEle.style.display = "none"
         selectedFileNameEle.innerHTML = uploadedFile.name || 'Unknown'
         let srcEle = getVideoSourceEle(currentType)
@@ -99,6 +100,7 @@ function prepareToUpload(file) {
 
     filePromise.then(result => {
         uploadedFile = result;
+        alert()
         console.log("File ready to be submitted to API : ", result.blob);
     })
 }
