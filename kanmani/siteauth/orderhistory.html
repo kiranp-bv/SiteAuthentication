@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review Collector — QA - Kanmani - Siteauth </title>
+  <script src="https://apps-qa.bazaarvoice.com/deployments/kanmani/siteauth/production/en_US/bv.js"></script>
+  <style>
+    :root { color-scheme: light; }
+    body {
+      font-family: system-ui, sans-serif;
+      padding: 24px;
+      background: #f8f9fa;
+    }
+    h2 { margin-bottom: 16px; }
+    .product-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 480px;
+    }
+    .product-card {
+      background: white;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .product-name {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #212529;
+    }
+  </style>
+</head>
+<body>
+  <h2>Order History — Rate your recent purchases</h2>
+
+  <!--
+    Simulates multiple review_collector containers arriving almost simultaneously
+    on an order history page, to exercise the 10 ms batching window.
+  -->
+  <div class="product-list">
+    <div class="product-card">
+      <p class="product-name">Product A</p>
+      <div
+        data-bv-show="review_collector"
+        data-bv-product-id="product1"
+        data-bv-campaign-id="order_history_page_collection11"
+      ></div>
+    </div>
+
+    <div class="product-card">
+      <p class="product-name">Product B</p>
+      <div
+        data-bv-show="review_collector"
+        data-bv-product-id="product2"
+        data-bv-campaign-id="order_history_page_collection11"
+      ></div>
+    </div>
+
+    <div class="product-card">
+      <p class="product-name">Product C</p>
+      <div
+        data-bv-show="review_collector"
+        data-bv-product-id="product3"
+        data-bv-campaign-id="order_history_page_collection11"
+      ></div>
+    </div>
+  </div>
+</body>
+</html>
